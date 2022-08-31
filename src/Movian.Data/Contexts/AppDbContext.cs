@@ -17,7 +17,7 @@ namespace Movian.Data.Contexts
 
     public DbSet<Product> Products { get; set; }
     public DbSet<Address> Addresses { get; set; }
-    public DbSet<Suplier> Supliers { get; set; }
+    public DbSet<Supplier> Suppliers { get; set; }
 
     // Prevent unmapped properties to be set with values to big
     protected override void OnModelCreating(ModelBuilder modelBuilder)

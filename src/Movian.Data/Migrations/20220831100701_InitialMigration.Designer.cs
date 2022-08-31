@@ -12,7 +12,7 @@ using Movian.Data.Contexts;
 namespace Movian.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220831021425_InitialMigration")]
+    [Migration("20220831100701_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,9 +46,9 @@ namespace Movian.Data.Migrations
                     b.Property<string>("State")
                         .HasColumnType("varchar(50)");
 
-                    b.Property<Guid>("SuplierId")
+                    b.Property<Guid>("SupplierId")
                         .HasColumnType("TEXT")
-                        .HasColumnName("Id_Suplier");
+                        .HasColumnName("Id_Supplier");
 
                     b.Property<string>("ZipCode")
                         .HasColumnType("varchar(8)");
@@ -56,7 +56,7 @@ namespace Movian.Data.Migrations
                     b.HasKey("Id")
                         .HasName("Id_Address");
 
-                    b.HasIndex("SuplierId")
+                    b.HasIndex("SupplierId")
                         .IsUnique();
 
                     b.ToTable("TB_Address", (string)null);
@@ -87,27 +87,27 @@ namespace Movian.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
-                    b.Property<Guid>("SuplierId")
+                    b.Property<Guid>("SupplierId")
                         .HasColumnType("TEXT")
                         .HasColumnName("Id_Supplier");
 
                     b.Property<decimal>("Value")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id")
                         .HasName("Id_Product");
 
-                    b.HasIndex("SuplierId");
+                    b.HasIndex("SupplierId");
 
                     b.ToTable("TB_Products", (string)null);
                 });
 
-            modelBuilder.Entity("Movian.Business.Models.Suplier", b =>
+            modelBuilder.Entity("Movian.Business.Models.Supplier", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasColumnName("Id_Suplier");
+                        .HasColumnName("Id_Supplier");
 
                     b.Property<bool>("Active")
                         .HasColumnType("integer");
@@ -124,36 +124,36 @@ namespace Movian.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
-                    b.Property<SuplierType>("SuplierType")
+                    b.Property<SupplierType>("SuplierType")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id")
-                        .HasName("Id_Suplier");
+                        .HasName("Id_Supplier");
 
-                    b.ToTable("TB_Suplier", (string)null);
+                    b.ToTable("TB_Supplier", (string)null);
                 });
 
             modelBuilder.Entity("Movian.Business.Models.Address", b =>
                 {
-                    b.HasOne("Movian.Business.Models.Suplier", "Suplier")
+                    b.HasOne("Movian.Business.Models.Supplier", "Supplier")
                         .WithOne("Address")
-                        .HasForeignKey("Movian.Business.Models.Address", "SuplierId")
+                        .HasForeignKey("Movian.Business.Models.Address", "SupplierId")
                         .IsRequired();
 
-                    b.Navigation("Suplier");
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("Movian.Business.Models.Product", b =>
                 {
-                    b.HasOne("Movian.Business.Models.Suplier", "Suplier")
+                    b.HasOne("Movian.Business.Models.Supplier", "Supplier")
                         .WithMany("Products")
-                        .HasForeignKey("SuplierId")
+                        .HasForeignKey("SupplierId")
                         .IsRequired();
 
-                    b.Navigation("Suplier");
+                    b.Navigation("Supplier");
                 });
 
-            modelBuilder.Entity("Movian.Business.Models.Suplier", b =>
+            modelBuilder.Entity("Movian.Business.Models.Supplier", b =>
                 {
                     b.Navigation("Address");
 

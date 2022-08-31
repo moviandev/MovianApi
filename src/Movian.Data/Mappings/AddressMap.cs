@@ -17,8 +17,8 @@ namespace Movian.Data.Mappings
         .IsRequired()
         .HasColumnName("Id_Address");
 
-      builder.Property(p => p.SuplierId)
-        .HasColumnName("Id_Suplier")
+      builder.Property(p => p.SupplierId)
+        .HasColumnName("Id_Supplier")
         .IsRequired();
 
       builder.Property(p => p.CompleteAddress)
@@ -43,9 +43,9 @@ namespace Movian.Data.Mappings
       builder.Property(p => p.AdditionalAddressData)
         .HasColumnType("varchar(200)");
 
-      builder.HasOne(p => p.Suplier)
+      builder.HasOne(p => p.Supplier)
         .WithOne(p => p.Address)
-        .HasForeignKey<Suplier>(p => p.AddressId);
+        .HasForeignKey<Supplier>(p => p.AddressId);
 
       builder.ToTable("TB_Address");
     }

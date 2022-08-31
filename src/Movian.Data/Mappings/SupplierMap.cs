@@ -4,18 +4,18 @@ using Movian.Business.Models;
 
 namespace Movian.Data.Mappings
 {
-  public class SuplierMap : IEntityTypeConfiguration<Suplier>
+  public class SuplierMap : IEntityTypeConfiguration<Supplier>
   {
-    public void Configure(EntityTypeBuilder<Suplier> builder)
+    public void Configure(EntityTypeBuilder<Supplier> builder)
     {
       builder
         .HasKey(p => p.Id)
-        .HasName("Id_Suplier");
+        .HasName("Id_Supplier");
 
       builder
         .Property(p => p.Id)
         .IsRequired()
-        .HasColumnName("Id_Suplier");
+        .HasColumnName("Id_Supplier");
 
       builder
         .Property(p => p.AddressId)
@@ -42,14 +42,14 @@ namespace Movian.Data.Mappings
         .IsRequired();
 
       builder.HasOne(p => p.Address)
-        .WithOne(p => p.Suplier)
-        .HasForeignKey<Address>(p => p.SuplierId);
+        .WithOne(p => p.Supplier)
+        .HasForeignKey<Address>(p => p.SupplierId);
 
       builder.HasMany(p => p.Products)
-        .WithOne(p => p.Suplier)
-        .HasForeignKey(p => p.SuplierId);
+        .WithOne(p => p.Supplier)
+        .HasForeignKey(p => p.SupplierId);
 
-      builder.ToTable("TB_Suplier");
+      builder.ToTable("TB_Supplier");
     }
   }
 

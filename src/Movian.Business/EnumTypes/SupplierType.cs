@@ -1,6 +1,6 @@
 namespace Movian.Business.EnumTypes
 {
-  public enum SuplierType
+  public enum SupplierType
   {
     NotSet = 0,
     CNPJ,

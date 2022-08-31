@@ -1,8 +1,10 @@
+using System;
+
 namespace Movian.Business.Models
 {
   public class Address : Entity
   {
-    public Guid SuplierId { get; set; }
+    public Guid SupplierId { get; set; }
     public string CompleteAddress { get; set; }
     public string Neighborhood { get; set; }
     public string ZipCode { get; set; }
@@ -12,6 +14,6 @@ namespace Movian.Business.Models
     public string Number { get; set; }
 
     /* EF Relations */
-    public Suplier Suplier { get; set; }
+    public Supplier Supplier { get; set; }
   }
 }

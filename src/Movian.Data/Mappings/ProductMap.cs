@@ -17,7 +17,7 @@ namespace Movian.Data.Mappings
         .IsRequired()
         .HasColumnName("Id_Product");
 
-      builder.Property(p => p.SuplierId)
+      builder.Property(p => p.SupplierId)
         .IsRequired()
         .HasColumnName("Id_Supplier");
 
@@ -42,7 +42,7 @@ namespace Movian.Data.Mappings
         .HasColumnType("integer")
         .IsRequired();
 
-      builder.HasOne(p => p.Suplier)
+      builder.HasOne(p => p.Supplier)
         .WithMany(p => p.Products);
 
       builder.ToTable("TB_Products");

@@ -10,10 +10,10 @@ namespace Movian.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "TB_Suplier",
+                name: "TB_Supplier",
                 columns: table => new
                 {
-                    Id_Suplier = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id_Supplier = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "varchar(200)", nullable: false),
                     Document = table.Column<string>(type: "varchar(14)", nullable: false),
                     Active = table.Column<bool>(type: "integer", nullable: false),
@@ -22,7 +22,7 @@ namespace Movian.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("Id_Suplier", x => x.Id_Suplier);
+                    table.PrimaryKey("Id_Supplier", x => x.Id_Supplier);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,7 +30,7 @@ namespace Movian.Data.Migrations
                 columns: table => new
                 {
                     Id_Address = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Id_Suplier = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id_Supplier = table.Column<Guid>(type: "TEXT", nullable: false),
                     CompleteAddress = table.Column<string>(type: "varchar(100)", nullable: false),
                     Neighborhood = table.Column<string>(type: "varchar(100)", nullable: true),
                     ZipCode = table.Column<string>(type: "varchar(8)", nullable: true),
@@ -43,10 +43,10 @@ namespace Movian.Data.Migrations
                 {
                     table.PrimaryKey("Id_Address", x => x.Id_Address);
                     table.ForeignKey(
-                        name: "FK_TB_Address_TB_Suplier_Id_Suplier",
-                        column: x => x.Id_Suplier,
-                        principalTable: "TB_Suplier",
-                        principalColumn: "Id_Suplier");
+                        name: "FK_TB_Address_TB_Supplier_Id_Supplier",
+                        column: x => x.Id_Supplier,
+                        principalTable: "TB_Supplier",
+                        principalColumn: "Id_Supplier");
                 });
 
             migrationBuilder.CreateTable(
@@ -55,7 +55,7 @@ namespace Movian.Data.Migrations
                 {
                     Id_Product = table.Column<Guid>(type: "TEXT", nullable: false),
                     Id_Supplier = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Value = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Value = table.Column<decimal>(type: "REAL", nullable: false),
                     Name = table.Column<string>(type: "varchar(200)", nullable: false),
                     Description = table.Column<string>(type: "varchar(1000)", nullable: false),
                     Image = table.Column<string>(type: "varchar(100)", nullable: false),
@@ -66,16 +66,16 @@ namespace Movian.Data.Migrations
                 {
                     table.PrimaryKey("Id_Product", x => x.Id_Product);
                     table.ForeignKey(
-                        name: "FK_TB_Products_TB_Suplier_Id_Supplier",
+                        name: "FK_TB_Products_TB_Supplier_Id_Supplier",
                         column: x => x.Id_Supplier,
-                        principalTable: "TB_Suplier",
-                        principalColumn: "Id_Suplier");
+                        principalTable: "TB_Supplier",
+                        principalColumn: "Id_Supplier");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TB_Address_Id_Suplier",
+                name: "IX_TB_Address_Id_Supplier",
                 table: "TB_Address",
-                column: "Id_Suplier",
+                column: "Id_Supplier",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -93,7 +93,7 @@ namespace Movian.Data.Migrations
                 name: "TB_Products");
 
             migrationBuilder.DropTable(
-                name: "TB_Suplier");
+                name: "TB_Supplier");
         }
     }
 }
