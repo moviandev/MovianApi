@@ -13,6 +13,11 @@ namespace Movian.Data.Mappings
         .HasName("Id_Suplier");
 
       builder
+        .Property(p => p.Id)
+        .IsRequired()
+        .HasColumnName("Id_Suplier");
+
+      builder
         .Property(p => p.AddressId)
         .HasColumnName("Id_Address")
         .IsRequired();
@@ -29,7 +34,7 @@ namespace Movian.Data.Mappings
 
       builder
         .Property(p => p.SuplierType)
-        .HasColumnType("varchar(2)")
+        .HasColumnType("INTEGER")
         .IsRequired();
 
       builder.Property(p => p.Active)
