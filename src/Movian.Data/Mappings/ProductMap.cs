@@ -34,6 +34,10 @@ namespace Movian.Data.Mappings
         .IsRequired()
         .HasColumnType("varchar(100)");
 
+      builder.Property(p => p.Value)
+        .IsRequired()
+        .HasColumnType("REAL");
+
       builder.Property(p => p.Active)
         .HasColumnType("integer")
         .IsRequired();
