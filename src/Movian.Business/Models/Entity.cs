@@ -1,3 +1,5 @@
+using System;
+
 namespace Movian.Business.Models
 {
   public abstract class Entity
