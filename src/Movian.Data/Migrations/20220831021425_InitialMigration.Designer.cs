@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Movian.Business.EnumTypes;
 using Movian.Data.Contexts;
 
 #nullable disable
@@ -11,7 +12,7 @@ using Movian.Data.Contexts;
 namespace Movian.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220831020045_InitialMigration")]
+    [Migration("20220831021425_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,7 +106,8 @@ namespace Movian.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Id_Suplier");
 
                     b.Property<bool>("Active")
                         .HasColumnType("integer");
@@ -122,8 +124,8 @@ namespace Movian.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
-                    b.Property<int>("SuplierType")
-                        .HasColumnType("varchar(2)");
+                    b.Property<SuplierType>("SuplierType")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id")
                         .HasName("Id_Suplier");
