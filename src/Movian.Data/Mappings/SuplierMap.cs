@@ -37,7 +37,8 @@ namespace Movian.Data.Mappings
         .IsRequired();
 
       builder.HasOne(p => p.Address)
-        .WithOne(p => p.Suplier);
+        .WithOne(p => p.Suplier)
+        .HasForeignKey<Address>(p => p.SuplierId);
 
       builder.HasMany(p => p.Products)
         .WithOne(p => p.Suplier)

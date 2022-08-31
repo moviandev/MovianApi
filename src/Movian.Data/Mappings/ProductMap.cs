@@ -12,6 +12,11 @@ namespace Movian.Data.Mappings
         .HasKey(p => p.Id)
         .HasName("Id_Product");
 
+      builder
+        .Property(p => p.Id)
+        .IsRequired()
+        .HasColumnName("Id_Product");
+
       builder.Property(p => p.SuplierId)
         .IsRequired()
         .HasColumnName("Id_Supplier");

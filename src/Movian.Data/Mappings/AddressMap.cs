@@ -12,6 +12,11 @@ namespace Movian.Data.Mappings
         .HasKey(p => p.Id)
         .HasName("Id_Address");
 
+      builder
+        .Property(p => p.Id)
+        .IsRequired()
+        .HasColumnName("Id_Address");
+
       builder.Property(p => p.SuplierId)
         .HasColumnName("Id_Suplier")
         .IsRequired();
@@ -39,7 +44,8 @@ namespace Movian.Data.Mappings
         .HasColumnType("varchar(200)");
 
       builder.HasOne(p => p.Suplier)
-        .WithOne(p => p.Address);
+        .WithOne(p => p.Address)
+        .HasForeignKey<Suplier>(p => p.AddressId);
 
       builder.ToTable("TB_Address");
     }
