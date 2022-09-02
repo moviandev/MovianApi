@@ -4,7 +4,7 @@ using Movian.Business.Models;
 
 namespace Movian.Data.Mappings
 {
-  public class SuplierMap : IEntityTypeConfiguration<Supplier>
+  public class SupplierMap : IEntityTypeConfiguration<Supplier>
   {
     public void Configure(EntityTypeBuilder<Supplier> builder)
     {
