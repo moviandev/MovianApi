@@ -12,7 +12,9 @@ namespace Movian.Business.Services
     private readonly ISupplierRepository _supplierRepository;
     private readonly IAddressRepository _addressRepository;
 
-    public SupplierService(ISupplierRepository supplerRepository, IAddressRepository addressRepository)
+    public SupplierService(ISupplierRepository supplerRepository,
+        IAddressRepository addressRepository,
+        INotifier notifier) : base(notifier)
     {
       _supplierRepository = supplerRepository;
       _addressRepository = addressRepository;
@@ -26,7 +28,7 @@ namespace Movian.Business.Services
 
       if (_supplierRepository.SearchAsync(f => f.Document == supplier.Document).Result.Any())
       {
-        // Add notifications
+        Notify("A supplier with that document already exists");
         return;
       }
 
@@ -40,7 +42,7 @@ namespace Movian.Business.Services
 
       if (_supplierRepository.SearchAsync(f => f.Document == supplier.Document && f.Id != supplier.Id).Result.Any())
       {
-        // Add notification
+        Notify("A supplier with that document already exists");
         return;
       }
 
@@ -59,7 +61,7 @@ namespace Movian.Business.Services
     {
       if (_supplierRepository.GetSupplierAndAddressAndProducts(id).Result.Products.Any())
       {
-        // Add notification
+        Notify("This supplier has products");
         return;
       }
 
