@@ -5,7 +5,7 @@ namespace Movian.Business.Models
   public class Address : Entity
   {
     public Guid SupplierId { get; set; }
-    public string CompleteAddress { get; set; }
+    public string StreetName { get; set; }
     public string Neighborhood { get; set; }
     public string ZipCode { get; set; }
     public string City { get; set; }
