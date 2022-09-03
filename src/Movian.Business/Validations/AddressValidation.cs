@@ -13,7 +13,7 @@ namespace Movian.Business.Validations
         .NotEmpty()
         .WithMessage("The field {PropertyName} cannot be empty");
 
-      RuleFor(p => p.CompleteAddress)
+      RuleFor(p => p.StreetName)
         .NotEmpty()
         .WithMessage("The field {PropertyName} cannot be empty")
         .Length(2, 100)
