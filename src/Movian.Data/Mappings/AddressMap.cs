@@ -21,7 +21,7 @@ namespace Movian.Data.Mappings
         .HasColumnName("Id_Supplier")
         .IsRequired();
 
-      builder.Property(p => p.CompleteAddress)
+      builder.Property(p => p.StreetName)
         .IsRequired()
         .HasColumnType("varchar(100)");
 
