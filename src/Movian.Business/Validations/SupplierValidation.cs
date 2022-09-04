@@ -15,7 +15,7 @@ namespace Movian.Business.Validations
         .Length(1, 200)
         .WithMessage("The field {PropertyName} need to have in between {MinLength} and {MaxLength} characters");
 
-      When(f => f.SuplierType == SupplierType.CPF, () =>
+      When(f => f.SupplierType == SupplierType.CPF, () =>
       {
         RuleFor(f => f.Document.Length).Equal(CpfValidation.TamanhoCpf)
           .WithMessage("The field needs to have {ComparisonValue} characteres and was inputed {PropertyValue}.");
@@ -23,7 +23,7 @@ namespace Movian.Business.Validations
           .WithMessage("Invalid document.");
       });
 
-      When(f => f.SuplierType == SupplierType.CNPJ, () =>
+      When(f => f.SupplierType == SupplierType.CNPJ, () =>
         {
           RuleFor(f => f.Document.Length).Equal(CnpjValidation.TamanhoCnpj)
             .WithMessage("The field needs to have {ComparisonValue} characteres and was inputed {PropertyValue}.");

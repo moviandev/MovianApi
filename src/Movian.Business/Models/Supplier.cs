@@ -9,7 +9,7 @@ namespace Movian.Business.Models
     public string Name { get; set; }
     public string Document { get; set; }
     public bool Active { get; set; }
-    public SupplierType SuplierType { get; set; }
+    public SupplierType SupplierType { get; set; }
     public Guid AddressId { get; set; }
 
     /* EF Relations */

@@ -33,7 +33,7 @@ namespace Movian.Data.Mappings
         .IsRequired();
 
       builder
-        .Property(p => p.SuplierType)
+        .Property(p => p.SupplierType)
         .HasColumnType("INTEGER")
         .IsRequired();
 
