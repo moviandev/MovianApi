@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Movian.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Movian.Api.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddDependencyInjection();
 
 var app = builder.Build();
 
