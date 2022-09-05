@@ -9,6 +9,7 @@ namespace Movian.Api.Settings
     public AutoMapperSetting()
     {
       CreateMap<Product, ProductDto>().ReverseMap();
+      CreateMap<Product, ProductImageDto>().ReverseMap();
       CreateMap<Supplier, SupplierDto>().ReverseMap();
       CreateMap<Address, AddressDto>().ReverseMap();
 
