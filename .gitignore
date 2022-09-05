@@ -510,7 +510,6 @@ Temporary Items
 Code
 
 # Built Visual Studio Code 
-Extensions
 *.vsix
 
 ### VisualStudioCode Patch ###
