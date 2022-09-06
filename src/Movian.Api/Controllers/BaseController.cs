@@ -6,6 +6,7 @@ using Movian.Business.Notifications;
 
 namespace Movian.Api.Controllers
 {
+  [ApiController]
   public class BaseController : ControllerBase
   {
     private readonly INotifier _notifier;
