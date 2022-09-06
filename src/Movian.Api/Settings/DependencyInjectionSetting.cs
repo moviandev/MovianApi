@@ -1,9 +1,13 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Movian.Api.Extensions;
 using Movian.Business.Interfaces;
 using Movian.Business.Notifications;
 using Movian.Business.Services;
 using Movian.Data.Contexts;
 using Movian.Data.Repositories;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Movian.Api.Settings
 {
@@ -16,9 +20,13 @@ namespace Movian.Api.Settings
       services.AddScoped<ISupplierRepository, SupplierRepository>();
       services.AddScoped<IAddressRepository, AddressRepository>();
 
+      services.AddScoped<INotifier, Notifier>();
       services.AddScoped<IProductService, ProductService>();
       services.AddScoped<ISupplierService, SupplierService>();
-      services.AddScoped<INotifier, Notifier>();
+
+      services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+      services.AddScoped<IUser, AspNetUser>();
+      services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfig>();
 
       return services;
     }
