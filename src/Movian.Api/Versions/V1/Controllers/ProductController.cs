@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Movian.Api.Controllers;
@@ -12,7 +13,9 @@ using Movian.Business.Models;
 
 namespace Movian.Api.Versions.V1.Controllers
 {
-  [Route("api/[controller]")]
+  [Authorize]
+  [ApiVersion("1.0")]
+  [Route("api/v{version:apiVersion}/[controller]")]
   public class ProductController : BaseController
   {
     private readonly IProductRepository _productRepository;
@@ -29,6 +32,7 @@ namespace Movian.Api.Versions.V1.Controllers
       _mapper = mapper;
     }
 
+    [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ProductDto>>> GetAll()
     {
