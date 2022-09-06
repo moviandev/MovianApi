@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Movian.Api.Controllers;
 using Movian.Api.Models;
@@ -10,7 +11,9 @@ using Movian.Business.Models;
 
 namespace Movian.Api.Versions.V1.Controllers
 {
-  [Route("api/[controller]")]
+  [Authorize]
+  [ApiVersion("1.0")]
+  [Route("api/v{version:apiVersion}/[controller]")]
   public class SupplierController : BaseController
   {
     private readonly ISupplierService _service;
@@ -30,6 +33,7 @@ namespace Movian.Api.Versions.V1.Controllers
       _mapper = mapper;
     }
 
+    [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<SupplierDto>>> GetAll()
     {
