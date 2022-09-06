@@ -6,6 +6,7 @@ using Movian.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using Movian.Api.Settings;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,22 +15,27 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(o =>
     o.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddControllers();
+builder.Services.AddDependencyInjection();
+builder.Services.AddIdentitySetting(builder.Configuration);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerConfig();
+
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddDependencyInjection();
+builder.Services.AddApiConfig();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-  app.UseSwagger();
-  app.UseSwaggerUI();
+  var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+  app.UseSwaggerConfig(provider);
 }
+
+app.UseApiConfig(app.Environment);
 
 app.UseHttpsRedirection();
 
